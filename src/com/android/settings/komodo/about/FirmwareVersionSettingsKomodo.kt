@@ -38,16 +38,12 @@ class FirmwareVersionSettingsKomodo : DashboardFragment() {
     }
 
     companion object {
-        @JvmField
-        val SEARCH_INDEX_DATA_PROVIDER = object : BaseSearchIndexProvider() {
-            override fun getXmlResourcesToIndex(
-                context: Context,
-                enabled: Boolean
-            ): List<SearchIndexableResource> {
+        val SEARCH_INDEX_DATA_PROVIDER: Indexable.SearchIndexProvider = object : BaseSearchIndexProvider() {
+            override fun getXmlResourcesToIndex(context: Context, enabled: Boolean): List<SearchIndexableResource> {
                 val result = ArrayList<SearchIndexableResource>()
-                val sir = SearchIndexableResource(context).apply {
-                    sir.xmlResId = R.xml.komodo_about_device
-                }
+
+                val sir = SearchIndexableResource(context)
+                sir.xmlResId = R.xml.komodo_about_device
                 result.add(sir)
                 return result
             }
